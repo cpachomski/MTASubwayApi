@@ -9,6 +9,7 @@ begin
 	con.query('DELETE FROM Writers')
 	puts "#{con.affected_rows} ROWS NUKED!"
 	puts "#{con.num_rows} ROWS REMAINING!"
+
 #Error reporting
 rescue Mysql::Error => e
 	puts e.errno
