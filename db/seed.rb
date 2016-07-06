@@ -1,6 +1,8 @@
 require 'csv'
-require_relative 'data_formatter'
 require 'mysql'
+require_relative 'data_formatter'
+require_relative 'data/subway_lines'
+
 require_relative 'mysql_config'
 CONFIG = MysqlConfig.new
 
@@ -9,19 +11,26 @@ begin
 	con = Mysql.new CONFIG.host, CONFIG.username, CONFIG.password, 'writers'
 	puts "Now connected to server #{con.get_server_info}"
 	# con.query("CREATE TABLE IF NOT EXISTS \
-	# 	subway_locations(Id INT PRIMARY KEY AUTO_INCREMENT, 
+	# 	subway_entrances(Id INT PRIMARY KEY AUTO_INCREMENT, 
 	# 					 Name VARCHAR(255),
 	# 					 Lat FLOAT,
 	# 					 Lng FLOAT,
-	# 					 Line Arrray)")
+	# 					 Lines Array)")
 
 
-	CSV.foreach('data/subway_entrances.csv') do |row|
-		p DataFormatter.get_name row
-		p DataFormatter.get_lat row
-		p DataFormatter.get_lng row
-		p DataFormatter.get_lines row
-	end
+	data_dir =  __dir__ + '/data/subway_entrances.csv'
+
+	# SubwayLines.get_lines.each do |line|
+	# 	p line
+	# end
+	# p SubwayLines.get_lines
+	# CSV.foreach(data_dir) do |row|
+	# 	con.query("INSERT INTO subway_entrances (Name, Lat, Lng, Lines)
+	# 			   VALUES (#{DataFormatter.get_name row},
+	# 			   		   #{DataFormatter.get_lat row},
+	# 			   		   #{DataFormatter.get_lng row},
+	# 			   		   #{DataFormatter.get_lines row}); ")
+	# end
 
 
 
