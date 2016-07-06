@@ -4,19 +4,23 @@ CONFIG = MysqlConfig.new
 
 
 begin 
-	con = Mysql.new CONFIG.host, CONFIG.username, CONFIG.password, 'writers'
+	con = Mysql.new CONFIG.host, CONFIG.username, CONFIG.password, 'mta_subway'
 	con.set_server_option Mysql::OPTION_MULTI_STATEMENTS_ON
 
 	puts "Now connected to server #{con.get_server_info}"
 
 	#Query starts here
-	res = con.query "SELECT * FROM writers "
+	lines_res = con.query "SELECT * from subway_lines; "
+	entrances_res = con.query "SELECT * from subway_entrances;"
 
-	puts res.num_rows > 1 ? "There are #{res.num_rows} rows in this table" : "There is #{res.num_rows} row in this table" 
 
-	res.each do |row|
+	puts lines_res.num_rows != 1 ? "There are #{lines_res.num_rows} rows in the subway_lines table" : "There is #{lines_res.num_rows} row in the subway_lines table" 
+
+	lines_res.each do |row|
 		puts row.join(":\s")
 	end
+
+	puts entrances_res.num_rows != 1 ? "There are #{entrances_res.num_rows} rows in the subway_entrances table" : "There is #{entrances_res.num_rows} row in the subway_entrances table" 
 
 
 
