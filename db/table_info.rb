@@ -1,10 +1,9 @@
 require 'mysql'
-require_relative 'mysql_config'
-CONFIG = MysqlConfig.new
+
 
 
 begin 
-	con = Mysql.new CONFIG.host, CONFIG.username, CONFIG.password, 'mta_subway'
+	con = Mysql.new ENV['db_host'], ENV['db_user'], ENV['db_password'], 'mta_subway'
 	con.set_server_option Mysql::OPTION_MULTI_STATEMENTS_ON
 
 	puts "Now connected to server #{con.get_server_info}"

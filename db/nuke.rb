@@ -1,10 +1,10 @@
 require 'mysql'
-require_relative 'mysql_config'
-CONFIG = MysqlConfig.new
+
 
 
 begin 
-	con = Mysql.new CONFIG.host, CONFIG.username, CONFIG.password, 'mta_subway'
+	p ENV["DB_HOST"]
+	con = Mysql.new ENV['DB_HOST'], ENV['DB_USER'], ENV['DB_PASSWORD'], 'mta_subway'
 	puts "NUKING....."
 	con.query('DROP TABLE subway_lines')
 	con.query('DROP TABLE subway_entrances')

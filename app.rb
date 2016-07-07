@@ -8,7 +8,7 @@ end
 
 get '/entrances' do
 	content_type :json
-	
-	 Get.all.to_json
+
+	Get.all.to_json
 end
 
