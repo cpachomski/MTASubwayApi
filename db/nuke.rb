@@ -4,7 +4,7 @@ require 'mysql'
 
 begin 
 	p ENV["DB_HOST"]
-	con = Mysql.new ENV['DB_HOST'], ENV['DB_USER'], ENV['DB_PASSWORD'], 'mta_subway'
+	con = Mysql.new ENV['DB_HOST'], ENV['DB_USER'], ENV['DB_PASSWORD'], ENV['DB_NAME']
 	puts "NUKING....."
 	con.query('DROP TABLE subway_lines')
 	con.query('DROP TABLE subway_entrances')
