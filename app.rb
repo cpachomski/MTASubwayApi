@@ -1,13 +1,14 @@
 require 'sinatra'
 require_relative 'fetchers/get'
 
-class MtaSubwayApi < Sinatra::Base
-	get '/' do
-		"Hello Squirrel"
-	end
 
-	get '/entrances' do
-		 Get.all
-	end
-
+get '/' do
+	"Hello Squirrel"
 end
+
+get '/entrances' do
+	content_type :json
+	
+	 Get.all.to_json
+end
+
