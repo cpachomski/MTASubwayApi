@@ -8,6 +8,7 @@ require_relative 'data/subway_lines'
 
 begin 
 	con = Mysql.new ENV['DB_HOST'], ENV['DB_USER'], ENV['DB_PASSWORD'], 'mta_subway'
+	puts 'yo'
 	puts "Now connected to server #{con.get_server_info}"
 
 	con.query("CREATE TABLE IF NOT EXISTS \
