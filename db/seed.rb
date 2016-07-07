@@ -38,6 +38,7 @@ begin
 		con.query("INSERT INTO subway_entrances (Name, Lat, Lng)
 				   VALUES( '" + DataFormatter.get_name(row) + "', " + DataFormatter.get_lat(row).to_s + ", " + DataFormatter.get_lng(row).to_s + ");" )
 	end
+		con.query("DELETE FROM subway_entrances WHERE Lat=0")
 
 
 
