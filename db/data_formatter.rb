@@ -1,11 +1,11 @@
 module DataFormatter
 
 	def self.get_name row
-		row[0]
+		row[0].gsub("'", "")
 	end
 
 	def self.get_lat row
-		row[1].partition('(').last.split(' ')[0].to_f
+		row[1] .partition('(').last.split(' ')[0].to_f
 	end
 
 	def self.get_lng row

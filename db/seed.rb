@@ -4,33 +4,41 @@ require_relative 'data_formatter'
 require_relative 'data/subway_lines'
 
 require_relative 'mysql_config'
-CONFIG = MysqlConfig.new
+CONFIG2 = MysqlConfig.new
 
 
 begin 
-	con = Mysql.new CONFIG.host, CONFIG.username, CONFIG.password, 'writers'
+	con = Mysql.new CONFIG2.host, CONFIG2.username, CONFIG2.password, 'mta_subway'
 	puts "Now connected to server #{con.get_server_info}"
-	# con.query("CREATE TABLE IF NOT EXISTS \
-	# 	subway_entrances(Id INT PRIMARY KEY AUTO_INCREMENT, 
-	# 					 Name VARCHAR(255),
-	# 					 Lat FLOAT,
-	# 					 Lng FLOAT,
-	# 					 Lines Array)")
+
+	con.query("CREATE TABLE IF NOT EXISTS \
+		subway_entrances(Id INT PRIMARY KEY AUTO_INCREMENT, 
+						 Name VARCHAR(255),
+						 Lat FLOAT,
+						 Lng FLOAT);")
+
+	con.query("CREATE TABLE IF NOT EXISTS \
+		subway_lines (Id INT PRIMARY KEY AUTO_INCREMENT, 
+						 Name VARCHAR(255));")
+
+
 
 
 	data_dir =  __dir__ + '/data/subway_entrances.csv'
 
-	# SubwayLines.get_lines.each do |line|
-	# 	p line
-	# end
-	# p SubwayLines.get_lines
-	# CSV.foreach(data_dir) do |row|
-	# 	con.query("INSERT INTO subway_entrances (Name, Lat, Lng, Lines)
-	# 			   VALUES (#{DataFormatter.get_name row},
-	# 			   		   #{DataFormatter.get_lat row},
-	# 			   		   #{DataFormatter.get_lng row},
-	# 			   		   #{DataFormatter.get_lines row}); ")
-	# end
+	SubwayLines.get_lines.each do |line|
+		con.query("INSERT INTO subway_lines (Name)
+				   VALUES ( '#{line}'  )")
+	end
+
+
+		#push name data into database
+	CSV.foreach(data_dir) do |row|
+		puts DataFormatter.get_name(row)
+		con.query("INSERT INTO subway_entrances (Name, Lat, Lng)
+				   VALUES( '" + DataFormatter.get_name(row) + "', " + DataFormatter.get_lat(row).to_s + ", " + DataFormatter.get_lng(row).to_s + ");" )
+	end
+
 
 
 
