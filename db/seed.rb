@@ -7,7 +7,7 @@ require_relative 'data/subway_lines'
 
 
 begin 
-	con = Mysql.new ENV['DB_HOST'], ENV['DB_USER'], ENV['DB_PASSWORD'], ENV['DB_NAME']
+	con = Mysql.new ENV['DATABASE_URL'], ENV['DB_USER'], ENV['DB_PASSWORD'], ENV['CLEARDB_DATABASE_URL']
 	puts 'yo'
 	puts "Now connected to server #{con.get_server_info}"
 
