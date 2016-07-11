@@ -7,7 +7,7 @@ require_relative '../db/db_con'
 module Entrances
 
 	def self.get_all
-		all = Array.new
+		payload = Array.new
 
 		begin
 			con = DBCON.create
@@ -16,15 +16,15 @@ module Entrances
 			p "ROW COUNT #{row_count}"
 
 			row_count.times do
-				all.push(res.fetch_hash)
+				payload.push(res.fetch_hash)
 			end
 		end	
 
-		return all
+		return payload
 	end
 
 	def self.get_all_within_radius(opts)
-		all = Array.new
+		payload = Array.new
 		#check for radius or use default
 		#NOTE: 0.015 deg ~= 1mi and 0.01 ~= 1km
 		radius = opts[:radius] || 0.005
@@ -61,20 +61,43 @@ module Entrances
 			p "ROW COUNT #{row_count}"
 
 			row_count.times do
-				all.push(res.fetch_hash)
+				payload.push(res.fetch_hash)
 			end
 		end
 
-		return all
+		return payload
 	end
 
 	def self.get_by_id id
 
 		begin 
 			con = DBCON.create
-			res = con.query("SELECT * FROM subway_entrances WHERE Id=#{id}")
+			res = con.query("SELECT * FROM subway_entrances
+							 WHERE Id=#{id}")
 			
 			return res.fetch_hash
+		end
+	end
+
+	def self.get_lines_by_id id
+
+		payload = Array.new
+		begin 
+			puts id.to_s +  " ID SEARCHED"
+			con = DBCON.create
+			res = con.query("SELECT Name
+							 FROM subway_lines as sl
+							 INNER JOIN subway_entrances_lines as sel
+							 	ON sl.Id = sel.LineId
+							 WHERE sel.EntranceId=#{id};")
+
+			row_count = res.num_rows
+
+			row_count.times do
+				payload.push(res.fetch_hash)
+			end
+
+			return payload
 		end
 	end
 end
