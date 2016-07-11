@@ -68,5 +68,13 @@ module Entrances
 		return all
 	end
 
+	def self.get_by_id id
 
+		begin 
+			con = DBCON.create
+			res = con.query("SELECT * FROM subway_entrances WHERE Id=#{id}")
+			
+			return res.fetch_hash
+		end
+	end
 end
