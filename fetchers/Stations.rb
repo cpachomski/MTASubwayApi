@@ -77,10 +77,9 @@ module Stations
 	end
 
 	def self.get_lines_by_id id
-
 		payload = Array.new
+
 		begin 
-			puts id.to_s +  " ID SEARCHED"
 			con = DBCON.create
 			res = con.query("SELECT Name
 							 FROM subway_lines as l
