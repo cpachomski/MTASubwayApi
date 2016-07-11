@@ -37,19 +37,17 @@ begin
 				   VALUES ( '#{line}'  )")
 	end
 
-
-	#INSERT subway entrance
 	CSV.foreach(data_dir) do |row|
-
+		#INSERT subway entrance
 		con.query("INSERT INTO subway_entrances (Name, Lat, Lng)
 				   VALUES( '" + DataFormatter.get_name(row) + "', " + DataFormatter.get_lat(row).to_s + ", " + DataFormatter.get_lng(row).to_s + ");" )
 
-		#INSERT subway entrance id and each line id for that stop into many-many associate table
 		entrance_id = con.query("SELECT LAST_INSERT_ID();").fetch_row
-		p DataFormatter.get_lines(row)
+
 		DataFormatter.get_lines(row).each do |line|
 			line_id = con.query("SELECT Id FROM subway_lines WHERE Name='" + line +"';").fetch_row
 			unless line_id == nil
+				#INSERT subway entrance id and each line id for that stop into many-many associate table
 				con.query("INSERT INTO subway_entrances_lines (LineId, EntranceId) VALUES (" + line_id[0].to_s + ", " + entrance_id[0].to_s + "); ")
 			end
 		end
