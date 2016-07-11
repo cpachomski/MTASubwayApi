@@ -9,8 +9,8 @@ begin
 	puts "NUKING....."
 
 	con.query('DROP TABLE subway_lines')
-	con.query('DROP TABLE subway_entrances')
-	con.query('DROP TABLE subway_entrances_lines')
+	con.query('DROP TABLE subway_stations')
+	con.query('DROP TABLE subway_stations_lines')
 
 	puts('All is lost...')
 

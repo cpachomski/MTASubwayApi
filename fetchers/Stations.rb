@@ -4,14 +4,14 @@ require_relative '../db/db_con'
 
 
 
-module Entrances
+module Stations
 
 	def self.get_all
 		payload = Array.new
 
 		begin
 			con = DBCON.create
-			res = con.query("SELECT * FROM subway_entrances")
+			res = con.query("SELECT * FROM subway_stations")
 			row_count = res.num_rows
 
 			row_count.times do
@@ -31,7 +31,7 @@ module Entrances
 		lat_min = opts[:lat].to_f - radius.to_f
 		lng_max = opts[:lng].to_f + radius.to_f
 		lng_min = opts[:lng].to_f - radius.to_f
-		query = "SELECT * FROM subway_entrances WHERE "
+		query = "SELECT * FROM subway_stations WHERE "
 
 		#build query bounds for lat lng if they exist   
 		unless opts[:lat] == nil
@@ -69,7 +69,7 @@ module Entrances
 
 		begin 
 			con = DBCON.create
-			res = con.query("SELECT * FROM subway_entrances
+			res = con.query("SELECT * FROM subway_stations
 							 WHERE Id=#{id}")
 			
 			return res.fetch_hash
@@ -83,10 +83,10 @@ module Entrances
 			puts id.to_s +  " ID SEARCHED"
 			con = DBCON.create
 			res = con.query("SELECT Name
-							 FROM subway_lines as sl
-							 INNER JOIN subway_entrances_lines as sel
-							 	ON sl.Id = sel.LineId
-							 WHERE sel.EntranceId=#{id};")
+							 FROM subway_lines as l
+							 INNER JOIN subway_stations_lines as sl
+							 	ON l.Id = sl.LineId
+							 WHERE sl.StationId=#{id};")
 
 			row_count = res.num_rows
 

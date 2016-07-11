@@ -10,7 +10,7 @@ begin
 
 	#Query starts here
 	lines_res = con.query "SELECT * from subway_lines; "
-	entrances_res = con.query "SELECT * from subway_entrances;"
+	stops_res = con.query "SELECT * from subway_stations;"
 
 
 	puts lines_res.num_rows != 1 ? "There are #{lines_res.num_rows} rows in the subway_lines table" : "There is #{lines_res.num_rows} row in the subway_lines table" 
@@ -19,7 +19,7 @@ begin
 		puts row.join(":\s")
 	end
 
-	puts entrances_res.num_rows != 1 ? "There are #{entrances_res.num_rows} rows in the subway_entrances table" : "There is #{entrances_res.num_rows} row in the subway_entrances table" 
+	puts stops_res.num_rows != 1 ? "There are #{stops_res.num_rows} rows in the subway_stations table" : "There is #{stops_res.num_rows} row in the subway_stations table" 
 
 
 
