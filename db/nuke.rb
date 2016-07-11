@@ -1,5 +1,5 @@
 require 'mysql'
-require_relative 'db_con'
+require_relative 'db_con'	
 
 
 
@@ -8,8 +8,10 @@ begin
 	con = DBCON.create
 
 	puts "NUKING....."
+	
 	con.query('DROP TABLE subway_lines')
 	con.query('DROP TABLE subway_entrances')
+	con.query('DROP TABLE subway_entrances_lines')
 
 	puts('All is lost...')
 
