@@ -14,10 +14,8 @@ get '/api/mta/subway/entrances' do
 
 
 	puts params
-	if params['lat'] && params['lng']
-		puts 'has what i need'
-
-		return Get.all_within_radius(params['lat'], params['lng']).to_json
+	if params['lat'] || params['lng'] 
+		return Entrances.get_all_within_radius({:lat => params['lat'], :lng => params['lng'], :radius => params['radius']}).to_json
 	end
 
 	return Entrances.get_all.to_json
