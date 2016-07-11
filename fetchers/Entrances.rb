@@ -13,7 +13,6 @@ module Entrances
 			con = DBCON.create
 			res = con.query("SELECT * FROM subway_entrances")
 			row_count = res.num_rows
-			p "ROW COUNT #{row_count}"
 
 			row_count.times do
 				payload.push(res.fetch_hash)
@@ -56,9 +55,7 @@ module Entrances
 		begin
 			con = DBCON.create
 			res = con.query(query)
-
 			row_count = res.num_rows
-			p "ROW COUNT #{row_count}"
 
 			row_count.times do
 				payload.push(res.fetch_hash)
