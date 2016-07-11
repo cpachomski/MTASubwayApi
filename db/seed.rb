@@ -8,10 +8,8 @@ require_relative 'db_con'
 
 
 begin 
-	# con = Mysql.new ENV['DB_HOST'], ENV['DB_USER'], ENV['DB_PASSWORD'], ENV['DB_NAME']
 	con = DBCON.create
-
-	puts 'yo'
+	
 	puts "Now connected to server #{con.get_server_info}"
 
 	con.query("CREATE TABLE IF NOT EXISTS \
