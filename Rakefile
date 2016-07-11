@@ -3,7 +3,7 @@ task :seed do
 end
 
 task :run do
-	sh "shotgun config.ru"
+	sh "rerun rackup"
 end
 
 task :nuke do
