@@ -25,26 +25,21 @@ module Entrances
 
 	def self.get_all_within_radius(opts)
 		all = Array.new
-		#check for radius
+		#check for radius or use default
 		radius = opts[:radius] || 0.005
-		puts opts[:lat]
-		puts opts[:lng]
-		puts radius
 		lat_max = opts[:lat].to_f + radius.to_f 
 		lat_min = opts[:lat].to_f - radius.to_f
 		lng_max = opts[:lng].to_f + radius.to_f
 		lng_min = opts[:lng].to_f - radius.to_f
-
 		query = "SELECT * FROM subway_entrances WHERE "
 
-
-		#build query bounds for lat lng		   
+		#build query bounds for lat lng if they exist   
 		unless opts[:lat] == nil
 			lat_within_radius = "(Lat > '#{lat_min}' AND Lat < '#{lat_max}')"
 		end
 
 		unless opts[:lng] == nil
-			lng_within_radius = "(Lng < '#{lat_max}' AND Lng > '#{lat_min}')"
+			lng_within_radius = "(Lng < '#{lng_max}' AND Lng > '#{lng_min}')"
 		end
 
 		#finish building query from opts
@@ -56,7 +51,6 @@ module Entrances
 		when opts[:lng] != nil
 			query = query + lng_within_radius
 		end
-
 
 		begin
 			con = DBCON.create
