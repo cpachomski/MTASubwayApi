@@ -26,6 +26,7 @@ module Entrances
 	def self.get_all_within_radius(opts)
 		all = Array.new
 		#check for radius or use default
+		#NOTE: 0.015 deg ~= 1mi and 0.01 ~= 1km
 		radius = opts[:radius] || 0.005
 		lat_max = opts[:lat].to_f + radius.to_f 
 		lat_min = opts[:lat].to_f - radius.to_f
