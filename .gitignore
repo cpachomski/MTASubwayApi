@@ -1,3 +1,1 @@
-db/mysql_config.rb
-.env
 db/db_con.rb
