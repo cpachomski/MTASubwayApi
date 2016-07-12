@@ -32,7 +32,7 @@ DEPENDENCIES
   mysql
   rake
   rerun
-  sinatra
+  sinatra (~> 1.4)
 
 RUBY VERSION
    ruby 2.3.0p0
