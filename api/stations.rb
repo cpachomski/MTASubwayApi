@@ -1,4 +1,4 @@
-require_relative '../fetchers/stations'
+require_relative '../fetchers/Stations'
 
 
 # ENTRANCES ROUTES

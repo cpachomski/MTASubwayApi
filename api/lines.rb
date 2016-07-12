@@ -1,4 +1,4 @@
-require_relative "../fetchers/lines"
+require_relative "../fetchers/Lines"
 
 #LINES ROUTES
 
