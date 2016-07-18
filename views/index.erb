@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MTA Subway API</title>
+	<link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="./css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="./css/skeleton.css">
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+<body>
+	<div class='container'>
+		<header class='row'>
+			<hr>
+			<logo><h1>New York City Subway API</h1></logo>
+		</header>
+		<div class='row'>
+			<content class='nine columns'>
+				<h2>API Overview</h2>
+				<p>The New York City Subway API provides subway line and station data in plain JSON as a RESTful service. There are so many stops in this city. Wow.</p>
+				<h4>API Endpoint </h4>
+					<code>http://mta-subway-api.herokuapp.com/api/mta/subway</code>
+				<h4>Stations</h4>
+				<route>
+					<endpoint>stations/</endpoint>
+					<p>Returns an array of JSON objects, one for each station in the city. Station object attributes include Id, Name, Lat, Lng.</p>
+				</route>
+				<route>
+					<endpoint>
+					</endpoint>
+					<p></p>
+				</route>
+			</content>
+			<nav class='three columns'>
+				<ul>
+					<li class='navbar-link'>
+						<a data-scroll="stations">Stations</a
+					</li>
+					<li class='navbar-link'>
+					 	<a data-scroll="lines">Lines</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+
+</body>
+</html>

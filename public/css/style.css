@@ -1,0 +1,104 @@
+body {
+	font-family: 'Arimo', sans-serif !important;
+	background: black;
+	color: white;
+}
+
+hr	{
+	color:white;
+	border-bottom: 7px solid white;
+	margin-bottom: -1px;
+}
+
+.row:not(:first-child) {
+	display: block;
+	margin-top: 50px;
+}
+
+.nine.columns{
+	padding-right: 15px !important;
+}
+
+nav {
+	margin-top: 50px;
+	position: fixed;
+	right: 50px;
+	top: 100px
+}
+
+ul {
+	position: relative;
+	list-style: none;
+}
+nav ul:before {
+	content: '';
+	height: 300px;
+	width: 7px;
+	background-color:white ;
+	position: absolute;
+	top: 6px;
+	left: -10px;
+}
+
+nav ul a {
+	text-decoration: none;
+	padding-left: 15px;
+	color: white;
+	font-size: 25px;
+	letter-spacing: 1px;
+	position: relative;
+	transition: color 0.2s ease-in;
+}
+
+
+nav ul a:before {
+	content: '';
+	width: 0px;
+	left: -5px;
+	top: 0px;
+	height: 100%;
+	position: absolute;
+	background-color: white;
+	transition: all 0.2s ease-in;
+}
+
+nav ul a:hover:before {
+	width: calc(100% + 25px);
+	z-index: -1;
+}
+
+nav ul a:hover {
+	color: black !important;
+	transform: translateX(5px);
+	-webkit-transform: translateX(5px);
+	-moz-transform: translateX(5px);
+	-ms-transform: translateX(5px);
+	-o-transform: translateX(5px);
+	cursor: pointer;
+}
+
+h4 {
+	margin-top: 50px;
+}
+
+h4 span {
+	font-size: 20px;
+	padding-left: 10px;
+}
+
+code {
+	display: block;
+	border-radius: none;
+	background-color: white;
+	color: black;
+	max-width: 90%;
+	margin: 15px auto;
+	padding: 15px;
+}
+
+route {
+	display: block;
+	margin-top: -5px;
+}
+
+
