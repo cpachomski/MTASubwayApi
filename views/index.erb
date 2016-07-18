@@ -17,17 +17,96 @@
 			<content class='nine columns'>
 				<h2>API Overview</h2>
 				<p>The New York City Subway API provides subway line and station data in plain JSON as a RESTful service. There are so many stops in this city. Wow.</p>
-				<h4>API Endpoint </h4>
-					<code>http://mta-subway-api.herokuapp.com/api/mta/subway</code>
-				<h4>Stations</h4>
+				<h4>API Base Endpoint </h4>
+					<code>http://mta-subway-api.herokuapp.com</code>
+				<br>
+				<br>
+				<h2>Stations</h2>
 				<route>
-					<endpoint>stations/</endpoint>
+					<endpoint><span>GET</span><h4> /stations</h4></endpoint>
 					<p>Returns an array of JSON objects, one for each station in the city. Station object attributes include Id, Name, Lat, Lng.</p>
+					<example>
+						<p>Request:</p>
+						<code>https://mta-subway-api.herokuapp.com/stations</code>
+						<p>Response:</p>
+						<code style='min-height: 100px;'>
+							[<br>
+								&nbsp;&nbsp;...<br>
+							&nbsp;&nbsp;{"Id":"7","Name":"33rd St","Lat":"-73.9821","Lng":"40.7461"},<br>&nbsp;&nbsp;{"Id":"8","Name":"Lexington Ave - 59th St","Lat":"-73.968","Lng":"40.7625"}<br>
+								&nbsp;&nbsp;... <br>
+							]
+						</code>
+					</example>
 				</route>
 				<route>
-					<endpoint>
-					</endpoint>
-					<p></p>
+					<endpoint><span>GET</span><h4> /stations/:id </h4></endpoint>
+					<p>Returns a JSON object containing the attribtues for the station with the given id.  Station object attributes include Id, Name, Lat, Lng.</p>
+					<example>
+						<p>Request:</p>
+						<code>https://mta-subway-api.herokuapp.com/stations/3</code>
+						<p>Response:</p>
+						<code>
+							{<br>&nbsp;&nbsp;"Id":"3","Name":"Buhre Ave",<br>&nbsp;&nbsp;"Lat":"-73.8326",<br>&nbsp;&nbsp;"Lng":"40.8468"<br>}
+						</code>
+					</example>
+				</route>
+				<route>
+					<endpoint><span>GET</span><h4> /stations/:id/lines </h4></endpoint>
+					<p>Returns a JSON array containing objects for each of the subway lines that the given station serves.  Line object attributes include Name.</p>
+					<example>
+						<p>Request:</p>
+						<code>https://mta-subway-api.herokuapp.com/stations/39/lines</code>
+						<p>Response:</p>
+						<code>
+							[<br>
+							&nbsp;&nbsp;{"Name":"F"},<br>
+							&nbsp;&nbsp;{"Name":"G"}<br>
+							]
+						</code>
+					</example>
+				</route>
+				<h2>Lines</h2>
+				<route>
+					<endpoint><span>GET</span><h4> /lines </h4></endpoint>
+					<p>Returns an array of JSON objects, one for each subway line in the city. Line object attributes include Id and Name</p>
+					<example>
+						<p>Request:</p>
+						<code>https://mta-subway-api.herokuapp.com/lines</code>
+						<p>Response:</p>
+						<code>
+							[<br>&nbsp;&nbsp;...&nbsp;&nbsp;<br>&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;"Id":"12",<br>&nbsp;&nbsp;&nbsp;&nbsp;"Name":"N"<br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;"Id":"13",<br>&nbsp;&nbsp;&nbsp;&nbsp;"Name":"Q"<br>&nbsp;&nbsp;}<br>&nbsp;&nbsp;...<br>
+							]
+						</code>
+					</example>
+				</route>
+				<route>
+					<endpoint><span>GET</span><h4> /lines/:id </h4></endpoint>
+					<p>Returns a JSON object containing the attribtues for the subway line with the given id. Line object attributes include Id and Name.</p>
+					<example>
+						<p>Request:</p>
+						<code>https://mta-subway-api.herokuapp.com/lines/3</code>
+						<p>Response:</p>
+						<code>
+							{<br>&nbsp;&nbsp;"Id":"3",<br>&nbsp;&nbsp;"Name":"E"<br>}
+						</code>
+					</example>
+				</route>
+				<route>
+					<endpoint><span>GET</span><h4> /lines/:id/stations </h4></endpoint>
+					<p>Returns a JSON array containing objects for each of the subway stations that the given line serves.  Station object attributes include Name, Lat, and Lng.</p>
+					<example>
+						<p>Request:</p>
+						<code>https://mta-subway-api.herokuapp.com/lines/3/stations</code>
+						<p>Response:</p>
+						<code>
+								[<br>
+								&nbsp;&nbsp;...<br>
+								&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;"Name":"Lexington Ave - 53rd St"<br>&nbsp;&nbsp;&nbsp;&nbsp;"Lat":"-73.9691",<br>&nbsp;&nbsp;&nbsp;&nbsp;"Lng":"40.7575"<br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;"Name":"23rd St - Ely Av"<br>&nbsp;&nbsp;&nbsp;&nbsp;"Lat":"-73.9461",<br>&nbsp;&nbsp;&nbsp;&nbsp;"Lng":"40.7478"<br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;"Name":"75th Ave"<br>&nbsp;&nbsp;&nbsp;&nbsp;"Lat":"-73.8369",<br>&nbsp;&nbsp;&nbsp;&nbsp;"Lng":"40.718"<br>&nbsp;&nbsp;},<br>
+								&nbsp;&nbsp;...<br>
+								]
+						</code>
+						</code>
+					</example>
 				</route>
 			</content>
 			<nav class='three columns'>
