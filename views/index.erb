@@ -6,6 +6,8 @@
 	<link rel="stylesheet" type="text/css" href="./css/normalize.css">
 	<link rel="stylesheet" type="text/css" href="./css/skeleton.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+
 </head>
 <body>
 	<div class='container'>
@@ -21,7 +23,7 @@
 					<code>http://mta-subway-api.herokuapp.com</code>
 				<br>
 				<br>
-				<h2>Stations</h2>
+				<h2 id='stations'>Stations</h2>
 				<route>
 					<endpoint><span>GET</span><h4> /stations</h4></endpoint>
 					<p>Returns an array of JSON objects, one for each station in the city. Station object attributes include Id, Name, Lat, Lng.</p>
@@ -65,7 +67,7 @@
 						</code>
 					</example>
 				</route>
-				<h2>Lines</h2>
+				<h2 id="lines">Lines</h2>
 				<route>
 					<endpoint><span>GET</span><h4> /lines </h4></endpoint>
 					<p>Returns an array of JSON objects, one for each subway line in the city. Line object attributes include Id and Name</p>
@@ -112,15 +114,28 @@
 			<nav class='three columns'>
 				<ul>
 					<li class='navbar-link'>
-						<a data-scroll="stations">Stations</a
+						<a class='navbar-anchor' data-scroll="stations">Stations</a
 					</li>
 					<li class='navbar-link'>
-					 	<a data-scroll="lines">Lines</a>
+					 	<a class='navbar-anchor' data-scroll="lines">Lines</a>
 					</li>
 				</ul>
 			</nav>
 		</div>
 	</div>
 
+
+	<script type="text/javascript">
+
+
+		var navLinks = document.getElementsByClassName('navbar-anchor');
+		for (var i = 0; i < navLinks.length; i++) {
+			navLinks[i].addEventListener('click', function(e){
+				var scrollDistance = document.getElementById(this.dataset.scroll).offsetTop;
+				window.scrollTo(0,scrollDistance - 10);
+
+			}) 
+		}
+	</script>
 </body>
 </html>
