@@ -36,7 +36,7 @@ module Lines
 
 		begin
 			con = DBCON.create
-			res = con.query("SELECT Name
+			res = con.query("SELECT Name, Lat, Lng
 							 FROM subway_stations as s
 							 INNER JOIN subway_stations_lines as sl
 							 	ON s.Id = sl.StationId
